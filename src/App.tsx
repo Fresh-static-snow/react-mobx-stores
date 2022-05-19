@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import { useStore } from "./hooks";
+import { observer } from "mobx-react-lite";
+//import "./styles.css";
 
-function App() {
+const App = observer(() => {
+  const counterStore = useStore("counterStore");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Counter app</h1>
+      <button onClick={() => counterStore.increment()}>Increment</button>
+      <button onClick={() => counterStore.decrement()}>Decrement</button>
+      <h2>Value {counterStore.value}</h2>
     </div>
   );
-}
+});
 
-export default App;
+export default App
